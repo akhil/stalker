@@ -1,5 +1,5 @@
 require 'beanstalk-client'
-require 'json'
+require 'yaml'
 require 'uri'
 require 'timeout'
 
@@ -16,7 +16,7 @@ module Stalker
     delay = opts[:delay] || 0
     ttr   = opts[:ttr]   || 120
     beanstalk.use job
-    beanstalk.put [ job, args ].to_json, pri, delay, ttr
+    beanstalk.put YAML.dump([ job, args ]), pri, delay, ttr
   rescue Beanstalk::NotConnected => e
     failed_connection(e)
   end
@@ -68,7 +68,7 @@ module Stalker
 
   def work_one_job
     job = beanstalk.reserve
-    name, args = JSON.parse job.body
+    name, args = YAML.load job.body
     log_job_begin(name, args)
     handler = @@handlers[name]
     raise(NoSuchJob, name) unless handler

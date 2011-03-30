@@ -88,7 +88,7 @@ If you wish to run a block of code prior to any job:
 Tidbits
 -------
 
-* Jobs are serialized as JSON, so you should stick to strings, integers, arrays, and hashes as arguments to jobs.  e.g. don't pass full Ruby objects - use something like an ActiveRecord/MongoMapper/CouchRest id instead.
+* Jobs are serialized as YAML
 * Because there are no class definitions associated with jobs, you can queue jobs from anywhere without needing to include your full app's environment.
 * If you need to change the location of your Beanstalk from the default (localhost:11300), set BEANSTALK_URL in your environment, e.g. export BEANSTALK_URL=beanstalk://example.com:11300/
 * The stalk binary is just for convenience, you can also run a worker with a straight Ruby command:

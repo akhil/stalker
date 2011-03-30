@@ -11,7 +11,6 @@ Jeweler::Tasks.new do |s|
 	s.rubyforge_project = "stalker"
 
 	s.add_dependency 'beanstalk-client'
-	s.add_dependency 'json_pure'
 
 	s.files = FileList["[A-Z]*", "{bin,lib}/**/*"]
 end
