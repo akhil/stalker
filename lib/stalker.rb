@@ -16,8 +16,6 @@ module Stalker
     delay = opts[:delay] || 0
     ttr   = opts[:ttr]   || 120
     beanstalk.use job
-    beanstalk.put YAML.dump([ job, args ]), pri, delay, ttr
-  rescue Beanstalk::NotConnected => e
     failed_connection(e)
   end
 
@@ -113,6 +111,7 @@ module Stalker
   end
 
   def log_job_begin(name, args)
+=begin
     args_flat = unless args.empty?
       '(' + args.inject([]) do |accum, (key,value)|
         accum << "#{key}=#{value}"
@@ -120,8 +119,8 @@ module Stalker
     else
       ''
     end
-
-    log [ "Working", name, args_flat ].join(' ')
+=end
+    log [ "Working", name, args.inspect ].join(' ')
     @job_begun = Time.now
   end
 
