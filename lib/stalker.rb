@@ -16,6 +16,7 @@ module Stalker
     delay = opts[:delay] || 0
     ttr   = opts[:ttr]   || 120
     beanstalk.use job
+  rescue Beanstalk::NotConnected => e
     failed_connection(e)
   end
 
