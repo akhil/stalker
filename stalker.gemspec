@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Wiggins"]
   s.date = %q{2011-03-11}
-  s.default_executable = %q{stalk}
   s.description = %q{A job queueing and background workers system using Beanstalkd.  Inspired by the Minion gem.}
   s.email = %q{adam@heroku.com}
   s.executables = ["stalk"]
